@@ -1,0 +1,94 @@
+body {
+  font-family: Roboto, sans-serif;
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.header {
+  // position: relative;
+  background-image: url(../images/mob_home_header@1.png);
+  background-position: center;
+  background-size: contain;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  @media screen and (min-width: 768px) {
+    background-image: url(../images/tablet_home_header@1.png);
+  }
+}
+
+.header__container {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header__wrappper {
+  // position: relative;
+  display: flex;
+  justify-content: space-between;
+  // position: relative;
+}
+.logo__link {
+  padding-top: 40px;
+  // padding-bottom: 166px;
+}
+.nav__list {
+  padding-top: 44px;
+  display: flex;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: 40px;
+}
+.nav__link {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.17;
+  color: #ffffff;
+}
+.form {
+  position: relative;
+  margin-top: 54px;
+  padding-bottom: 92px;
+  // position: absolute;
+  // right: 0px;
+  // top: 50%;
+  // transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+}
+.form__input {
+  width: 280px;
+  border: none;
+  outline: none;
+  border-bottom: 0.5px solid #ffffff;
+  font-size: 16px;
+  background: none;
+  color: #ffffff;
+}
+.form__input::placeholder {
+  position: absolute;
+  left: 0px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.form__button {
+  position: absolute;
+  right: -6px;
+  background-color: transparent;
+  border: none;
+}
