@@ -1,0 +1,9 @@
+body {
+    font-family: Roboto,sans-serif;
+    @include font(12px, 500, 1.67);
+    color: var(--description-text-color);
+    background: var(--main-background-color);
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+}
