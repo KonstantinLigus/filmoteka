@@ -28,8 +28,12 @@ export function createMovieCard(movie) {
       <h2 class="movie-card__about">About</h2>
       <p class="movie-card__about--content"> ${overview} </p>
       <div class="button-wrapper">
-      <button type="button" class="modal-button modal-button-watched">Add to watched</button>
-      <button type="button" class="modal-button modal-button-queue">Add to queue</button>
+        <button type="button" class="modal-button modal-button-watched">Add to watched</button>
+        <button type="button" class="modal-button modal-button-queue">Add to queue</button>
+      </div>
+      <div class="trailer-container">
+        <p class="trailer-discription">TRAILER</p>
+        <button type="button" class="modal-film__play-btn"></button>
       </div>
     </div>`;
 }
