@@ -1,3 +1,4 @@
+import confetti from 'canvas-confetti';
 const refs = {
     openModal: document.querySelector('[open-modal]'),
     closeModal: document.querySelector('[close-modal]'),
@@ -12,6 +13,29 @@ refs.backdrop.addEventListener('click',onBackdrop)
 function onOpenModal() {
     window.addEventListener('keydown', onEscKey)
     refs.backdrop.classList.toggle('is-hidden')
+    
+    let end = Date.now() + (10 * 1000);
+    const colors = ['#ff6b01', '#ffffff'];
+    (function frame() {
+    confetti({
+    particleCount: 2,
+    angle: 30,
+    spread: 80,
+    origin: { x: 0 },
+    colors: colors
+    });
+    confetti({
+    particleCount: 2,
+    angle: 150,
+    spread: 70,
+    origin: { x: 1 },
+    colors: colors
+    });
+
+    if (Date.now() < end) {
+    requestAnimationFrame(frame);
+    }
+}());
 }
 function onCloseModal() {
     window.removeEventListener('keydown', onEscKey)
@@ -70,6 +94,3 @@ function buildProfile() {
     }).join("")
 }
 refs.card.innerHTML = buildProfile(people);
-
-
-
