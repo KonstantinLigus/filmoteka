@@ -7,6 +7,7 @@ export function renderMovieCard(movies) {
 
 function createMovieCard(movies) {
   return movies
+<<<<<<< Updated upstream
     .map(({ poster_path, title, genre_ids, release_date, id }) => {
       const releaseDate = releaseDateChecker(release_date);
       const titleUp = title.toUpperCase();
@@ -14,13 +15,28 @@ function createMovieCard(movies) {
       const genre = getGenre(genre_ids);
 
       return `<li class="gallery__item" id=${id}>
+=======
+    .map(({ poster_path, title, genre_ids, release_date, id}) => {
+      const releaseDate = release_date.slice(0, 4);
+      const titleUp = title.toUpperCase();
+      return `<li class="gallery__item" id=${id}>
+      <a class="gallery__link" href="">
+>>>>>>> Stashed changes
         <img
           class="gallery__img"
           src="${poster}"
           alt=${title}
         />
         <p class="gallery__name">${titleUp}</p>
+<<<<<<< Updated upstream
         <p class="gallery__information">${genre} | ${releaseDate}</p>
+=======
+        <p class="gallery__information">${getGenre(
+          genre_ids
+        )} | ${releaseDate}</p>
+
+      </a>
+>>>>>>> Stashed changes
     </li>`;
     })
     .join('');
