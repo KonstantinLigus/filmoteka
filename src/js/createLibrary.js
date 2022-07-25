@@ -2,8 +2,8 @@ import { getGenre } from './genresOfMovies';
 
 
 
-export function createMovieCard(movies) {
-  return movies
+export function createMovieCard(movie) {
+  return movie
     .map(({ poster_path, title, genre_ids, release_date, id }) => {
       const releaseDate = releaseDateChecker(release_date);
       const titleUp = title.toUpperCase();
@@ -37,3 +37,4 @@ function posterChecker(poster_path) {
   }
   return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }
+

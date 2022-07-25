@@ -1,4 +1,3 @@
-import { GetMovieApi } from './fetchMovies';
 import { createMovieCard } from './createModal';
 
 const refs = {
@@ -7,7 +6,6 @@ const refs = {
   closeBtn: document.querySelector('[data-modal-close]'),
   modalCard: document.querySelector('.movie-modal'),
 };
-const getMovieApi = new GetMovieApi();
 let movie = null;
 let watchedMovie = [];
 let queuedMovie = [];
