@@ -1,15 +1,19 @@
+import { gallery } from './references';
 import { getGenre } from './genresOfMovies';
 
 
+export function renderMovieCard(movies) {
+  gallery.innerHTML = createMovieCard(movies);
+}
 
-export function createMovieCard(movie) {
-  return movie
-    .map(({ poster_path, title, genre_ids, release_date, id }) => {
+
+function createMovieCard(movies) {
+  return movies
+    .map(({ poster_path, title, genres, release_date, id }) => {
       const releaseDate = releaseDateChecker(release_date);
       const titleUp = title.toUpperCase();
       const poster = posterChecker(poster_path);
-      const genre = getGenre(genre_ids);
-
+      const genre = genreById(genres);
       return `<li class="gallery__item" id=${id}>
         <img
           class="gallery__img"
@@ -17,12 +21,17 @@ export function createMovieCard(movie) {
           alt=${title}
         />
         <p class="gallery__name">${titleUp}</p>
-        <p class="gallery__information">${genre} | ${releaseDate}</p>
+        <p class="gallery__information">${getGenre(genre)} | ${releaseDate}</p>
     </li>`;
     })
     .join('');
 }
 
+function genreById(genres) {
+  return genres.map(({ id }) => {
+    return id;
+  })
+}
 function releaseDateChecker(release_date) {
   if (release_date === '') {
     return 'no info';

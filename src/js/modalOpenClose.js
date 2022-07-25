@@ -1,4 +1,7 @@
-import { createMovieCard } from './createModal';
+import { renderMovieCard } from './createModal';
+import { GetMovieApi } from './fetchMovies';
+
+const getMovieApi = new GetMovieApi();
 
 const refs = {
   backdrop: document.querySelector('.backdrop'),
@@ -12,15 +15,21 @@ let queuedMovie = [];
 
 refs.modalOpenClose.addEventListener('click', onModalOpen);
 
-export function onModalOpen(e) {
+ export async function onModalOpen(e) {
   e.preventDefault();
   const card = e.target.parentNode;
   const id = card.getAttribute('id');
-
-  movie = JSON.parse(localStorage.getItem('searchedMovies')).find(
-    movie => movie.id === Number(id)
-  );
-  renderMovieCard(movie);
+  // movie = JSON.parse(localStorage.getItem('searchedMovies')).find(
+  //   movie => movie.id === Number(id)
+  // );
+  try {
+    movie = await getMovieApi.fetchMoviebyId(id);
+    renderMovieCard(movie);
+  } 
+  catch (error) {
+    console.error(error);
+  }
+  // renderMovieCard(movie);
   const btnRefs = {
     addQueue: document.querySelector('.modal-button-queue'),
     addWatched: document.querySelector('.modal-button-watched'),
@@ -68,9 +77,9 @@ function closeOnKeydown(e) {
   }
 }
 
-function renderMovieCard(movie) {
-  refs.modalCard.innerHTML = createMovieCard(movie);
-}
+// function renderMovieCard(movie) {
+//   refs.modalCard.innerHTML = createMovieCard(movie);
+// }
 
 function onBtnWatchedClick(e) {
   if (!e.target.classList.contains('watched')) {

@@ -1,4 +1,3 @@
-import { paginationHome } from './references';
 import { GetMovieApi } from './fetchMovies';
 import { renderMovieCard } from './createGallery';
 import { renderNumerationOfHome } from './createNumeration';
