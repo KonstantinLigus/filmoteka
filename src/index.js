@@ -9,3 +9,5 @@ import * as onCardClick from './js/onCardClick';
 import * as onWatchedAndQueueClick from './js/onWatchedAndQueueClick';
 import * as onAddToWatchedAndAddToQueueClick from './js/onAddToWatchedAndAddToQueueClick';
 import * as loader from './js/loader';
+import * as footerModal from './js/footerModal';
+
