@@ -20,9 +20,10 @@ function getGenresNames(genres, genresIds) {
 }
 
 export function filteredGenresNames(genresNames) {
-  return /* filteredGenres = */ genresNames.filter((el, ind) => {
+  const filteredGenres = genresNames.filter((el, ind) => {
     if (ind < 2) {
       return true;
     }
   });
+  return filteredGenres;
 }
