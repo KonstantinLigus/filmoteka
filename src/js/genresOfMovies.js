@@ -19,7 +19,7 @@ function getGenresNames(genres, genresIds) {
     .map(obj => obj.name);
 }
 
-function filteredGenresNames(genresNames) {
+export function filteredGenresNames(genresNames) {
   return (filteredGenres = genresNames.filter((el, ind) => {
     if (ind < 2) {
       return true;
