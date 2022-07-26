@@ -1,6 +1,6 @@
 import { form } from './references';
-import { noSuccess } from './references';
-import { renderMovieCard } from './createGallery'
+import { noSuccess, paginationHome } from './references';
+import { renderMovieCard } from './createGallery';
 import { GetMovieApi } from './fetchMovies';
 import { renderNumerationOfHome } from './createNumeration';
 
@@ -34,7 +34,10 @@ async function searchMoviesAndRender(inputValue) {
     }
     // Render gallery
     renderMovieCard(data.results);
-    renderNumerationOfHome(data.total_pages, data.page);
+    paginationHome.innerHTML = '';
+    if (data.total_pages > 0) {
+      renderNumerationOfHome(data.total_pages, data.page);
+    }
   } catch (error) {
     console.error(error);
   }
