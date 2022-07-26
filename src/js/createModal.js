@@ -1,7 +1,12 @@
 import { getGenre } from './genresOfMovies';
+const modalCard = document.querySelector('.movie-modal');
 
-export function createMovieCard(movie) {
-  const { poster_path, title, genre_ids, popularity, vote_average, vote_count, overview, id } = movie;
+export function renderMovieCard(movie) {
+modalCard.innerHTML = createMovieCard(movie);
+}
+
+function createMovieCard(movie) {
+  const { poster_path, title, genres, popularity, vote_average, vote_count, overview, id } = movie;
   const titleUp = title.toUpperCase();
   return ` <div class="movie-card__item">
       <img src="https://image.tmdb.org/t/p/w500${poster_path}" class="movie-card__poster" />
@@ -23,7 +28,7 @@ export function createMovieCard(movie) {
         </li>
         <li class="movie-card__info--item">
           <h2 class="movie-card__info--title"> Genre </h2>
-          <p class="movie-card__content--item"> ${getGenre(genre_ids)} </p>
+          <p class="movie-card__content--item"> ${getGenre(genres)} </p>
       </ul>
       <h2 class="movie-card__about">About</h2>
       <p class="movie-card__about--content"> ${overview} </p>

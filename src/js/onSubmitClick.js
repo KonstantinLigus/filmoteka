@@ -1,6 +1,5 @@
 import { form } from './references';
 import { noSuccess } from './references';
-import { paginationHome } from './references';
 import { renderMovieCard } from './createGallery'
 import { GetMovieApi } from './fetchMovies';
 import { renderNumerationOfHome } from './createNumeration';

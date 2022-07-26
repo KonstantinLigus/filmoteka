@@ -12,6 +12,7 @@ export class GetMovieApi {
       // '/3/trending/movie/day';
     this.SEARCH_URL = 'https://api.themoviedb.org/3/search/movie';
     this.API_KEY = 'e331122fb787497311a69180baf8c75a';
+    this.SEARCH_ID_URL = '/3/movie/'
     this.page = 1;
   }
 
@@ -38,6 +39,13 @@ export class GetMovieApi {
     isFetchPopularMovie = false;
     return data;
   }
+  async fetchMoviebyId(id) {
+    const movie = await axios.get(
+      `${this.SEARCH_ID_URL}/${id}?api_key=${this.API_KEY}&language=en`
+    );
+    return movie.data;
+  }
+
   setPage(page) {
     this.page = page;
   }

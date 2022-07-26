@@ -1,17 +1,16 @@
-import { createMovieCard } from './createLibrary';
-import { gallery } from './references';
+import { renderMovieCard } from './createLibrary';
 
 const libBtnWatch = document.querySelector('[data-action="watched"]');
 const libBtnQueue = document.querySelector('[data-action="queue"]');
-let movie = [];
+
 
 window.addEventListener('DOMContentLoaded', onLibraryLoad);
 libBtnWatch.addEventListener('click', onClickLibBtnWatch);
 libBtnQueue.addEventListener('click', onClickLibBtnQueue);
 
 export function onLibraryLoad(event) {
-    movie = JSON.parse(localStorage.getItem('watchedCard'));
-    gallery.innerHTML = createMovieCard(movie);
+    const movies = JSON.parse(localStorage.getItem('watchedCard'))
+    renderMovieCard(movies);
 
 }
 
@@ -30,8 +29,8 @@ export function onClickLibBtnQueue(event) {
     libBtnQueue.disabled = event.target;
     libBtnWatch.disabled = !event.target;
 
-movie = JSON.parse(localStorage.getItem('queuedCard'));
-gallery.innerHTML = createMovieCard(movie);
+const movies = JSON.parse(localStorage.getItem('queuedCard'));
+renderMovieCard(movies);
 
 }
 
