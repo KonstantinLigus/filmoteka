@@ -2,7 +2,6 @@ import { getGenre } from './genresOfMovies';
 const modalCard = document.querySelector('.movie-modal');
 
 export function renderMovieCard(movie) {
-  console.log(movie);
   modalCard.innerHTML = createMovieCard(movie);
 }
 

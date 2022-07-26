@@ -8,7 +8,7 @@ import { inputValue } from './onSubmitClick';
 import { renderMovieCard } from './createGallery';
 import { renderNumerationOfHome } from './createNumeration';
 
-getMovieApi = new GetMovieApi();
+const getMovieApi = new GetMovieApi();
 
 paginationHome.addEventListener('click', onPageNumberClick);
 
