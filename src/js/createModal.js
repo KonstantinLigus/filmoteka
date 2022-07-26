@@ -1,10 +1,26 @@
 import { getGenre } from './genresOfMovies';
+const modalCard = document.querySelector('.movie-modal');
 
-export function createMovieCard(movie) {
-  const { poster_path, title, genre_ids, popularity, vote_average, vote_count, overview, id } = movie;
+export function renderMovieCard(movie) {
+  modalCard.innerHTML = createMovieCard(movie);
+}
+
+function createMovieCard(movie) {
+  const {
+    poster_path,
+    title,
+    genres,
+    popularity,
+    vote_average,
+    vote_count,
+    overview,
+    id,
+  } = movie;
   const titleUp = title.toUpperCase();
+  const genre = genreByName(genres);
+  const poster = posterChecker(poster_path);
   return ` <div class="movie-card__item">
-      <img src="https://image.tmdb.org/t/p/w500${poster_path}" class="movie-card__poster" />
+      <img src=${poster} class="movie-card__poster" />
     </div>
     <div class="movie-card__item">
       <h1 class="movie-card__title"> ${titleUp} </h1>
@@ -23,7 +39,7 @@ export function createMovieCard(movie) {
         </li>
         <li class="movie-card__info--item">
           <h2 class="movie-card__info--title"> Genre </h2>
-          <p class="movie-card__content--item"> ${getGenre(genre_ids)} </p>
+          <p class="movie-card__content--item"> ${genre} </p>
       </ul>
       <h2 class="movie-card__about">About</h2>
       <p class="movie-card__about--content"> ${overview} </p>
@@ -36,4 +52,19 @@ export function createMovieCard(movie) {
         <button type="button" class="modal-film__play-btn"></button>
       </div>
     </div>`;
+}
+
+function genreByName(genres) {
+  return genres
+    .map(({ name }) => {
+      return name;
+    })
+    .join(', ');
+}
+
+function posterChecker(poster_path) {
+  if (poster_path === null) {
+    return 'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found';
+  }
+  return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }

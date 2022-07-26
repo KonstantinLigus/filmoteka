@@ -3,21 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>My library</title>
+    <link
+      rel="shortcut icon"
+      href="./images/header-images/star.png"
+      type="image/png"
+    />
     <link rel="stylesheet" href="./sass/main.scss" />
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./my-library.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Hind+Madurai:wght@400;500;600;700&family=Roboto:ital,wght@0,400;1,500&display=swap"
       rel="stylesheet"
     />
   </head>
+  <body>
+    <include src="./partials/header-my-lib.html"></include>
+    <main>
+      <include src="./partials/gallery-my-lib.html"></include>
+      <include src="./partials/numeration-my-lib.html"></include>
+    </main>
+    <include src="./partials/footer.html"></include>
+    <include src="./partials/modal.html"></include>
+  </body>
 </html>
-<body>
-  <include src="./partials/header-my-lib.html"></include>
-  <main>
-    <include src="./partials/gallery-my-lib.html"></include>
-    <include src="./partials/numeration-my-lib.html"></include>
-  </main>
-  <include src="./partials/footer.html"></include>
-  <include src="./partials/modal.html"></include>
-</body>

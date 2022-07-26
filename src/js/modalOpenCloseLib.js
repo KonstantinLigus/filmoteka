@@ -1,8 +1,7 @@
 import { renderMovieCard } from './createModal';
 import { GetMovieApi } from './fetchMovies';
-import { createMovieCard } from './createModal';
-import { trailer } from './trailer';
-// import basicLightbox from basiclightbox;
+import { renderMovieCards } from './createLibrary';
+
 // import { locationURl } from './onLibraryLoad';
 
 const getMovieApi = new GetMovieApi();
@@ -12,14 +11,12 @@ export const refs = {
   modalOpenClose: document.querySelector('.js-modalOpenClose'),
   closeBtn: document.querySelector('[data-modal-close]'),
   modalCard: document.querySelector('.movie-modal'),
-  trailerBtn: document.querySelector('.modal-film__play-btn'),
 };
 let movie = null;
 let watchedMovie = [];
 let queuedMovie = [];
 
 refs.modalOpenClose.addEventListener('click', onModalOpen);
-refs.trailerBtn.addEventListener('click', trailer(e));
 
 export async function onModalOpen(e) {
   // e.preventDefault();
@@ -86,39 +83,6 @@ function closeOnKeydown(e) {
 //   refs.modalCard.innerHTML = createMovieCard(movie);
 // }
 
-export function trailerRender(data) {
-  // const btnModalTrailer = document.querySelector('.modal-film__play-btn');
-
-  const instance = basicLightbox.create(
-      `<div class="modal-trailer__backdrop">
-          <iframe class="iframe" width="640" height="480" frameborder="0" allowfullscreen allow='autoplay'
-              src="https://www.youtube.com/embed/${data.results[0].key}?autoplay=1" >
-          </iframe>
-      </div>`,
-      {
-          onShow: instance => {
-              instance.element().onclick = instance.close;
-              document.addEventListener('keydown', onEscClose);
-          },
-      },
-      {
-          onClose: instance => {
-              document.removeEventListener('keydown', onEscClose);
-              console.log(instance);
-          },
-      },
-  );
-  function onEscClose(event) {
-      if (event.code === 'Escape') {
-      instance.close();
-      }
-  }
-  trailerBtn.addEventListener('click', () => {
-      instance.show();
-  });
-
-function onBtnWatchedClick(e) {
-=======
 export function onBtnWatchedClick(e) {
   if (!e.target.classList.contains('watched')) {
     if (JSON.parse(localStorage.getItem('watchedCard'))) {
@@ -126,6 +90,7 @@ export function onBtnWatchedClick(e) {
     }
     watchedMovie.push(movie);
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
+    renderMovieCards(watchedMovie);
     e.target.classList.add('watched');
     e.target.textContent = 'REMOVE FROM WATCHED';
     return;
@@ -137,6 +102,7 @@ export function onBtnWatchedClick(e) {
     );
     watchedMovie = [...filterWatchedMovie];
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
+    renderMovieCards(watchedMovie);
     e.target.classList.remove('watched');
     e.target.textContent = 'ADD TO WATCHED';
   }
@@ -149,6 +115,7 @@ export function onQueueBtnClick(e) {
     }
     queuedMovie.push(movie);
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
+    renderMovieCards(queuedMovie);
     e.target.classList.add('queued');
     e.target.textContent = 'REMOVE FROM QUEUED';
     return;
@@ -161,6 +128,7 @@ export function onQueueBtnClick(e) {
     queuedMovie = [...filterQueuedMovie];
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
     // if (locationURl === window.location.toString()) {
+    renderMovieCards(queuedMovie);
     // }
     e.target.classList.remove('queued');
     e.target.textContent = 'ADD TO QUEUED';

@@ -1,18 +1,17 @@
 import { gallery } from './references';
 import { getGenre } from './genresOfMovies';
 
-export function renderMovieCard(movies) {
+export function renderMovieCards(movies) {
   gallery.innerHTML = createMovieCard(movies);
 }
 
 function createMovieCard(movies) {
   return movies
-    .map(({ poster_path, title, genre_ids, release_date, id }) => {
+    .map(({ poster_path, title, genres, release_date, id }) => {
       const releaseDate = releaseDateChecker(release_date);
       const titleUp = title.toUpperCase();
       const poster = posterChecker(poster_path);
-      const genre = getGenre(genre_ids);
-
+      const genre = genreById(genres);
       return `<li class="gallery__item" id=${id}>
         <img
           class="gallery__img"
@@ -20,12 +19,17 @@ function createMovieCard(movies) {
           alt=${title}
         />
         <p class="gallery__name">${titleUp}</p>
-        <p class="gallery__information">${genre} | ${releaseDate}</p>
+        <p class="gallery__information">${getGenre(genre)} | ${releaseDate}</p>
     </li>`;
     })
     .join('');
 }
 
+function genreById(genres) {
+  return genres.map(({ id }) => {
+    return id;
+  });
+}
 function releaseDateChecker(release_date) {
   if (release_date === '') {
     return 'no info';
@@ -35,7 +39,8 @@ function releaseDateChecker(release_date) {
 
 function posterChecker(poster_path) {
   if (poster_path === null) {
-    return 'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found';
+    return (poster =
+      'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found');
   }
   return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }

@@ -1,12 +1,11 @@
 import { form } from './references';
-import { noSuccess } from './references';
-import { paginationHome } from './references';
+import { noSuccess, paginationHome } from './references';
 import { renderMovieCard } from './createGallery';
 import { GetMovieApi } from './fetchMovies';
-import { createNumeration } from './createNumeration';
+import { renderNumerationOfHome } from './createNumeration';
 
 const getMovieApi = new GetMovieApi();
-let inputValue = '';
+export let inputValue = '';
 
 form.addEventListener('submit', onSubmitClick);
 
@@ -22,36 +21,28 @@ export function onSubmitClick(e) {
     noSuccess.classList.remove('visible');
   }
   // Search movies
-  searchMovies(inputValue);
+  searchMoviesAndRender(inputValue);
   clearInput();
 }
 
-async function searchMovies(inputValue) {
+async function searchMoviesAndRender(inputValue) {
   try {
     getMovieApi.resetPage();
-    const response = await getMovieApi.fetchSearchedMovie(inputValue);
-    if (response.data.results.length === 0) {
+    const data = await getMovieApi.fetchSearchedMovie(inputValue);
+    if (data.results.length === 0) {
       noSuccess.classList.add('visible');
     }
     // Render gallery
-    renderMovieCard(response.data.results);
-    createPagination(response);
+    renderMovieCard(data.results);
+    paginationHome.innerHTML = '';
+    if (data.total_pages > 0) {
+      renderNumerationOfHome(data.total_pages, data.page);
+    }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
 function clearInput() {
   form.reset();
-}
-
-function createPagination(response) {
-  if (response.data.total_results > 0) {
-    paginationHome.innerHTML = createNumeration(
-      response.data.total_pages,
-      response.data.page
-    );
-  } else {
-    paginationHome.innerHTML = '';
-  }
 }
