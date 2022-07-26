@@ -90,6 +90,7 @@ export function onBtnWatchedClick(e) {
     }
     watchedMovie.push(movie);
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
+    renderMovieCards(watchedMovie);
     e.target.classList.add('watched');
     e.target.textContent = 'REMOVE FROM WATCHED';
     return;
@@ -114,6 +115,7 @@ export function onQueueBtnClick(e) {
     }
     queuedMovie.push(movie);
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
+    renderMovieCards(queuedMovie);
     e.target.classList.add('queued');
     e.target.textContent = 'REMOVE FROM QUEUED';
     return;
