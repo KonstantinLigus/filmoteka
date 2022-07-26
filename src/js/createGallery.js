@@ -35,8 +35,7 @@ function releaseDateChecker(release_date) {
 
 function posterChecker(poster_path) {
   if (poster_path === null) {
-    return (poster =
-      'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found');
+    return 'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found';
   }
   return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }
