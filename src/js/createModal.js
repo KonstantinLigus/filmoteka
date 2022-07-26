@@ -18,8 +18,9 @@ function createMovieCard(movie) {
   } = movie;
   const titleUp = title.toUpperCase();
   const genre = genreByName(genres);
+  const poster = posterChecker(poster_path);
   return ` <div class="movie-card__item">
-      <img src="https://image.tmdb.org/t/p/w500${poster_path}" class="movie-card__poster" />
+      <img src=${poster} class="movie-card__poster" />
     </div>
     <div class="movie-card__item">
       <h1 class="movie-card__title"> ${titleUp} </h1>
@@ -55,4 +56,11 @@ function genreByName(genres) {
       return name;
     })
     .join(', ');
+}
+
+function posterChecker(poster_path) {
+  if (poster_path === null) {
+    return 'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found';
+  }
+  return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }

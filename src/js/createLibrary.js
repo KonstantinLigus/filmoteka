@@ -1,11 +1,9 @@
 import { gallery } from './references';
 import { getGenre } from './genresOfMovies';
 
-
-export function renderMovieCard(movies) {
+export function renderMovieCards(movies) {
   gallery.innerHTML = createMovieCard(movies);
 }
-
 
 function createMovieCard(movies) {
   return movies
@@ -30,7 +28,7 @@ function createMovieCard(movies) {
 function genreById(genres) {
   return genres.map(({ id }) => {
     return id;
-  })
+  });
 }
 function releaseDateChecker(release_date) {
   if (release_date === '') {
@@ -46,4 +44,3 @@ function posterChecker(poster_path) {
   }
   return `https://image.tmdb.org/t/p/w500${poster_path}`;
 }
-

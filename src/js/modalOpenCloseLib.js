@@ -1,5 +1,7 @@
 import { renderMovieCard } from './createModal';
 import { GetMovieApi } from './fetchMovies';
+import { renderMovieCards } from './createLibrary';
+
 // import { locationURl } from './onLibraryLoad';
 
 const getMovieApi = new GetMovieApi();
@@ -99,6 +101,7 @@ export function onBtnWatchedClick(e) {
     );
     watchedMovie = [...filterWatchedMovie];
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
+    renderMovieCards(watchedMovie);
     e.target.classList.remove('watched');
     e.target.textContent = 'ADD TO WATCHED';
   }
@@ -123,6 +126,7 @@ export function onQueueBtnClick(e) {
     queuedMovie = [...filterQueuedMovie];
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
     // if (locationURl === window.location.toString()) {
+    renderMovieCards(queuedMovie);
     // }
     e.target.classList.remove('queued');
     e.target.textContent = 'ADD TO QUEUED';
