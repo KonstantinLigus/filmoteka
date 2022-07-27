@@ -4,7 +4,7 @@ import { getGenre } from './genresOfMovies';
 export function renderMovieCards(movies) {
   if (movies === null || movies.length === 0) {
     gallery.innerHTML =
-      '<img src=https://via.placeholder.com/440x660.jpg?text=There+Are+Empty />';
+      '<img src=https://cdn.dribbble.com/users/888330/screenshots/2653750/media/b7459526aeb0786638a2cf16951955b1.png />';
     return;
   }
   gallery.innerHTML = createMovieCard(movies);
