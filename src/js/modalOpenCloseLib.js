@@ -1,6 +1,7 @@
 import { renderMovieCard } from './createModal';
 import { GetMovieApi } from './fetchMovies';
 import { renderMovieCards } from './createLibrary';
+import { isQueueOpen, isWatchedOpen } from './onLibraryLoad';
 
 // import { locationURl } from './onLibraryLoad';
 
@@ -90,7 +91,10 @@ export function onBtnWatchedClick(e) {
     }
     watchedMovie.push(movie);
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
-    renderMovieCards(watchedMovie);
+    if (isWatchedOpen) {
+      renderMovieCards(watchedMovie);
+    }
+
     e.target.classList.add('watched');
     e.target.textContent = 'REMOVE FROM WATCHED';
     return;
@@ -102,7 +106,9 @@ export function onBtnWatchedClick(e) {
     );
     watchedMovie = [...filterWatchedMovie];
     localStorage.setItem('watchedCard', JSON.stringify(watchedMovie));
-    renderMovieCards(watchedMovie);
+    if (isWatchedOpen) {
+      renderMovieCards(watchedMovie);
+    }
     e.target.classList.remove('watched');
     e.target.textContent = 'ADD TO WATCHED';
   }
@@ -115,7 +121,9 @@ export function onQueueBtnClick(e) {
     }
     queuedMovie.push(movie);
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
-    renderMovieCards(queuedMovie);
+    if (isQueueOpen) {
+      renderMovieCards(queuedMovie);
+    }
     e.target.classList.add('queued');
     e.target.textContent = 'REMOVE FROM QUEUED';
     return;
@@ -127,9 +135,9 @@ export function onQueueBtnClick(e) {
     );
     queuedMovie = [...filterQueuedMovie];
     localStorage.setItem('queuedCard', JSON.stringify(queuedMovie));
-    // if (locationURl === window.location.toString()) {
-    renderMovieCards(queuedMovie);
-    // }
+    if (isQueueOpen) {
+      renderMovieCards(queuedMovie);
+    }
     e.target.classList.remove('queued');
     e.target.textContent = 'ADD TO QUEUED';
   }
