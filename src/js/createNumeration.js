@@ -15,14 +15,16 @@ function createNumeration(totalPages, page) {
     liTag += `<li class="btn prev" data-totalPages="${totalPages}" data-page="${
       page - 1
     }"
-    ><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    ><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" data-totalPages="${totalPages}" data-page="${
+      page - 1
+    }">
     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
   </svg></li>`;
   }
 
   if (page > 2) {
     //якщо значення сторінки менше 2, додає 1 після попередньої кнопки
-    liTag += `<li class="first numb" data-totalPages="${totalPages}" data-page="1")">1</li>`;
+    liTag += `<li class="first numb" data-totalpages="${totalPages}" data-page="1")">1</li>`;
     if (page > 3) {
       //якщо значення сторінки більше 3, додає (...) після першої li або сторінки
       liTag += `<li class="dots">...</li>`;
@@ -31,7 +33,7 @@ function createNumeration(totalPages, page) {
 
   // скільки сторінок або li відображається перед поточної li
   if (page == totalPages) {
-    beforePage = beforePage - 1;
+    beforePage = beforePage;
   } else if (page == totalPages - 1) {
     beforePage = beforePage;
   }
@@ -58,7 +60,7 @@ function createNumeration(totalPages, page) {
       //інакше залишає порожнім активну змінну
       active = '';
     }
-    liTag += `<li class="numb ${active}" data-totalPages="${totalPages}" data-page="${length}">${length}</li>`;
+    liTag += `<li class="numb ${active}" data-totalpages="${totalPages}" data-page="${length}">${length}</li>`;
   }
 
   if (page < totalPages - 1) {
@@ -67,15 +69,17 @@ function createNumeration(totalPages, page) {
       //якщо значення сторінки менше значення totalPage на -2, додає (...) перед останньою li або сторінкою
       liTag += `<li class="dots">...</li>`;
     }
-    liTag += `<li class="last numb" data-totalPages="${totalPages}" data-page="${totalPages}">${totalPages}</li>`;
+    liTag += `<li class="last numb" data-totalpages="${totalPages}" data-page="${totalPages}">${totalPages}</li>`;
   }
 
   if (page < totalPages) {
     //показує наступну кнопку, якщо значення сторінки менше totalPage(20)
-    liTag += `<li class="btn next" data-totalPages="${totalPages}" data-page="${
+    liTag += `<li class="btn next" data-totalpages="${totalPages}" data-page="${
       page + 1
     }">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16" data-totalpages="${totalPages}" data-page="${
+      page + 1
+    }">
     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
   </svg></li>`;
   }

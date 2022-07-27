@@ -1,17 +1,16 @@
 .pagination {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.pagination ul{
+.pagination ul {
   width: 374px;
   height: 45px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: var(--main-background-color);
-
 }
-.pagination ul li{
+.pagination ul li {
   color: #454747;
   list-style: none;
   text-align: center;
@@ -22,7 +21,7 @@
   user-select: none;
   transition: all 0.3s ease;
 }
-.pagination ul li.numb{
+.pagination ul li.numb {
   list-style: none;
   height: 45px;
   width: 45px;
@@ -30,17 +29,17 @@
   line-height: 45px;
   border-radius: 5px;
 }
-.pagination ul li.numb.first{
+.pagination ul li.numb.first {
   margin: 0px 3px 0 -5px;
 }
-.pagination ul li.numb.last{
+.pagination ul li.numb.last {
   margin: 0px -5px 0 3px;
 }
-.pagination ul li.dots{
+.pagination ul li.dots {
   font-size: 22px;
   cursor: default;
 }
-.pagination ul li.btn{
+.pagination ul li.btn {
   width: 45px;
   padding: 0 5px;
   border-radius: 5px;
@@ -51,7 +50,7 @@
 .pagination li.active,
 .pagination ul li.numb:hover,
 .pagination ul li:first-child:hover,
-.pagination ul li:last-child:hover{
+.pagination ul li:last-child:hover {
   color: var(--action-text-color);
   background: var(--action-background-color);
 }

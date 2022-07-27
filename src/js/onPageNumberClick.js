@@ -9,18 +9,19 @@ import { renderMovieCard } from './createGallery';
 import { renderNumerationOfHome } from './createNumeration';
 
 const getMovieApi = new GetMovieApi();
-
+let pageCurrent = null;
 paginationHome.addEventListener('click', onPageNumberClick);
 
 export function onPageNumberClick(event) {
-  checkFetchPopularMovie(event);
-  checkFetchSearchedMovie(event);
+  pageCurrent = event.target.dataset.page;
+  checkFetchPopularMovie();
+  checkFetchSearchedMovie();
 }
 
-function checkFetchPopularMovie(event) {
+function checkFetchPopularMovie() {
   if (isFetchPopularMovie) {
     // if (event.target.classList.contains('numb')) {
-    popularMoviesAndRender(event);
+    renderPopularMoviesAndNumeration();
     // }
   }
 }
@@ -28,14 +29,14 @@ function checkFetchPopularMovie(event) {
 function checkFetchSearchedMovie(event) {
   if (isFetchSearchedMovie) {
     // if (event.target.classList.contains('numb')) {
-    searchMoviesAndRender(event, inputValue);
+    renderSearchedMoviesAndNumeration();
     // }
   }
 }
 
-async function searchMoviesAndRender(event, inputValue) {
+async function renderSearchedMoviesAndNumeration() {
   try {
-    getMovieApi.setPage(event.target.dataset.page);
+    getMovieApi.setPage(pageCurrent);
     const data = await getMovieApi.fetchSearchedMovie(inputValue);
     renderMovieCard(data.results);
     renderNumerationOfHome(data.total_pages, data.page);
@@ -43,9 +44,9 @@ async function searchMoviesAndRender(event, inputValue) {
     console.error(error);
   }
 }
-async function popularMoviesAndRender(event) {
+async function renderPopularMoviesAndNumeration() {
   try {
-    getMovieApi.setPage(event.target.dataset.page);
+    getMovieApi.setPage(pageCurrent);
     const data = await getMovieApi.fetchPopularMovie();
     renderMovieCard(data.results);
     renderNumerationOfHome(data.total_pages, data.page);
