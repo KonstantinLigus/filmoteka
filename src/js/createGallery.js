@@ -2,6 +2,11 @@ import { gallery } from './references';
 import { getGenre } from './genresOfMovies';
 
 export function renderMovieCard(movies) {
+  if (movies.length === 0) {
+    gallery.innerHTML =
+      '<img src=https://cdn.dribbble.com/users/6487750/screenshots/16827244/media/f79f5e40dd7189d69388ec0b069e4b73.png />';
+    return;
+  }
   gallery.innerHTML = createMovieCard(movies);
 }
 
