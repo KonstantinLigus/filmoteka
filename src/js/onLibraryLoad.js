@@ -1,16 +1,7 @@
 import { renderMovieCards } from './createLibrary';
-// import { refs } from './modalOpenClose';
-// import { onModalOpen } from './modalOpenClose';
 
 const libBtnWatch = document.querySelector('[data-action="watched"]');
 const libBtnQueue = document.querySelector('[data-action="queue"]');
-// const backdrop = document.querySelector('.backdrop');
-// export const locationURl = window.location.toString();
-
-// const btnRefs = {
-//   addQueue: document.querySelector('.modal-button-queue'),
-//   addWatched: document.querySelector('.modal-button-watched'),
-// };
 
 window.addEventListener('DOMContentLoaded', onLibraryLoad);
 libBtnWatch.addEventListener('click', onClickLibBtnWatch);
@@ -37,23 +28,4 @@ export function onClickLibBtnQueue(event) {
 
   const movies = JSON.parse(localStorage.getItem('queuedCard'));
   renderMovieCards(movies);
-  //   if (backdrop.classList.contains('is-hidden')) {
-  //     console.log(backdrop.classList.contains('is-hidden'));
-  //     const removeQueue = document.querySelector('.data-modal-queue');
-  //     const removeWatched = document.querySelector('.watched');
-
-  //     removeQueue.addEventListener('click', onQueueBtnClick);
-  //     removeWatched.addEventListener('click', onBtnWatchedClick);
-  //   }
 }
-
-// function onQueueBtnClick() {
-//   if (removeQueue.classList.contains('queued')) {
-//     const movies = JSON.parse(localStorage.getItem('queuedCard'));
-//     renderMovieCards(movies);
-//   }
-// }
-// function onBtnWatchedClick() {
-//   const movies = JSON.parse(localStorage.getItem('watchedCard'));
-//   renderMovieCards(movies);
-// }

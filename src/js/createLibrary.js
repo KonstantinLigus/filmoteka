@@ -2,6 +2,11 @@ import { gallery } from './references';
 import { getGenre } from './genresOfMovies';
 
 export function renderMovieCards(movies) {
+  if (movies === null || movies.length === 0) {
+    gallery.innerHTML =
+      '<img src=https://via.placeholder.com/440x660.jpg?text=There+Are+Empty />';
+    return;
+  }
   gallery.innerHTML = createMovieCard(movies);
 }
 
