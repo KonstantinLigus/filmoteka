@@ -1,18 +1,18 @@
 import confetti from 'canvas-confetti';
 const refs = {
-    openModal: document.querySelector('[open-modal]'),
-    closeModal: document.querySelector('[close-modal]'),
-    backdrop: document.querySelector('[js-backdrop]'),
+    openModal2: document.querySelector('[open-modal]'),
+    closeModal2: document.querySelector('[close-modal]'),
+    backdrop2: document.querySelector('[js-backdrop]'),
     card: document.querySelector('.js-menu')
 }
 
-refs.openModal.addEventListener('click', onOpenModal)
-refs.closeModal.addEventListener('click', onCloseModal)
-refs.backdrop.addEventListener('click',onBackdrop)
+refs.openModal2.addEventListener('click', onOpenModal2)
+refs.closeModal2.addEventListener('click', onCloseModal2)
+refs.backdrop2.addEventListener('click',onBackdrop2)
 
-function onOpenModal() {
+function onOpenModal2() {
     window.addEventListener('keydown', onEscKey)
-    refs.backdrop.classList.toggle('is-hidden')
+    refs.backdrop2.classList.toggle('is-hidden2')
     
     let end = Date.now() + (10 * 1000);
     const colors = ['#ff6b01', '#ffffff'];
@@ -37,15 +37,15 @@ function onOpenModal() {
     }
 }());
 }
-function onCloseModal() {
+function onCloseModal2() {
     window.removeEventListener('keydown', onEscKey)
-    refs.backdrop.classList.toggle('is-hidden')
+    refs.backdrop2.classList.toggle('is-hidden2')
 }
-function onBackdrop(event) {
+function onBackdrop2(event) {
     console.log(event.currentTarget)
     console.log(event.target)
     if (event.currentTarget === event.target) {
-        onCloseModal()
+        onCloseModal2()
         console.log("click")
     }
 }
@@ -53,7 +53,7 @@ function onBackdrop(event) {
 function onEscKey(event) {
     console.log(event)
     if (event.code === 'Escape') {
-    onCloseModal()
+    onCloseModal2()
     }
 }
 

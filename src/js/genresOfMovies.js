@@ -1,27 +1,29 @@
-import axios from 'axios';
+const genres = JSON.parse(localStorage.getItem('genres'));
 
-async function fetchGenres() {
-  const {
-    data: { genres },
-  } = await axios.get(
-    'https://api.themoviedb.org/3/genre/movie/list?api_key=e331122fb787497311a69180baf8c75a'
-  );
-  return genres;
-}
-export async function getGenre(genreId) {
-  try {
-    const genres = await fetchGenres();
-    console.log(genres);
-    const genre = genres.find(genre => genre.id === genreId);
-    console.log(genre);
-    return genre.name;
-  } catch (error) {
-    console.error(error);
+export function getGenre(genresIds) {
+  if (genresIds.length === 0) {
+    return 'no info';
   }
+  const genresNames = getGenresNames(genres, genresIds);
+  if (genresNames.length > 3) {
+    const filteredNames = filteredGenresNames(genresNames);
+    filteredNames.push('Other');
+    return filteredNames.join(', ');
+  }
+  return genresNames.join(', ');
 }
 
-// async function name(params) {
-//   const genreName = await getGenre(18);
-//   console.log(genreName);
-// }
-// name();
+function getGenresNames(genres, genresIds) {
+  return genres
+    .filter(genre => genresIds.includes(genre.id))
+    .map(obj => obj.name);
+}
+
+export function filteredGenresNames(genresNames) {
+  const filteredGenres = genresNames.filter((el, ind) => {
+    if (ind < 2) {
+      return true;
+    }
+  });
+  return filteredGenres;
+}

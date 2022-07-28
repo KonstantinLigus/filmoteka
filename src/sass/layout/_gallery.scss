@@ -1,58 +1,67 @@
-.gallery {
-    width: 100%;
-    margin-bottom: -20px;
+.gallery,
+.gallery__lib {
+  width: 100%;
+  margin-bottom: -20px;
 
-    @media screen and (min-width: 768px) {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -32px;
-        margin-bottom: 0px;
-    }
-    @media screen and (min-width: 1200px) {
-        margin-right: -16px;
-    }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -32px;
+    margin-bottom: 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: -16px;
+  }
 }
 
 .gallery__item {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    @media screen and (min-width: 768px) {
-        flex-basis: calc(100% / 2 - 32px);
-        margin-right: 32px;
-        margin-bottom: 32px;
-    }
+  @media screen and (min-width: 768px) {
+    flex-basis: calc(100% / 2 - 32px);
+    margin-right: 32px;
+    margin-bottom: 32px;
+  }
 
-    @media screen and (min-width: 1200px) {
-        flex-basis: calc(100% / 3 - 16px);
-        margin-right: 16px;
-    }
+  @media screen and (min-width: 1280px) {
+    flex-basis: calc(100% / 3 - 16px);
+    margin-right: 16px;
+  }
+
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 2px 3px 7px rgba(238, 90, 5, 0.959),
+      2px 3px 7px rgba(230, 97, 9, 0.87), 2px 3px 7px rgba(218, 133, 6, 0.767);
+  }
 }
-
 .gallery__img {
-    width: 100%;
-    margin-bottom: 10px;
-    @media screen and (min-width: 768px) {
-        margin-bottom: 8px;
-    }
-    @media screen and (min-width: 1200px) {
-        margin-bottom: 12px;
-        }
-
+  width: 100%;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+    height: 455px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 12px;
+    height: 574px;
+  }
 }
 .gallery__name {
-    color: var(--title-text-color);
-    @include font(12px, 700, 1.14);   
-        @media screen and (min-width: 1200px) {
-            @include font(20px, 700, 1.02);
-        }
-        margin-bottom: 4px;
+  color: var(--title-text-color);
+  @include font(12px, 700, 1.14);
+  @media screen and (min-width: 1280px) {
+    @include font(20px, 700, 1.02);
+  }
+  margin-bottom: 4px;
 }
 
 .gallery__information {
-    color: var(--description-text-color);
-    @include font(12px, 700, 1.14);
-    
-        @media screen and (min-width: 1200px) {
-            @include font(20px, 700, 1.02);
-        }  
+  color: var(--description-text-color);
+  @include font(12px, 700, 1.14);
+
+  @media screen and (min-width: 1280px) {
+    @include font(20px, 700, 1.02);
+  }
 }
