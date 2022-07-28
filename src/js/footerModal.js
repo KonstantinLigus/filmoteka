@@ -1,4 +1,6 @@
 import confetti from 'canvas-confetti';
+// At the component you want to use confetti
+
 const refs = {
     openModal2: document.querySelector('[open-modal]'),
     closeModal2: document.querySelector('[close-modal]'),
@@ -13,11 +15,14 @@ refs.backdrop2.addEventListener('click',onBackdrop2)
 function onOpenModal2() {
     window.addEventListener('keydown', onEscKey)
     refs.backdrop2.classList.toggle('is-hidden2')
-    
-    let end = Date.now() + (10 * 1000);
+
+
+    if (!refs.backdrop2.classList.contains('is-hidden2')) {
+    let end = Date.now() + (1 * 1000);
     const colors = ['#ff6b01', '#ffffff'];
     (function frame() {
-    confetti({
+        confetti({
+            shapes:['circle', 'circle', 'square'],
     particleCount: 2,
     angle: 30,
     spread: 80,
@@ -36,7 +41,11 @@ function onOpenModal2() {
     requestAnimationFrame(frame);
     }
 }());
+    }
 }
+
+
+
 function onCloseModal2() {
     window.removeEventListener('keydown', onEscKey)
     refs.backdrop2.classList.toggle('is-hidden2')
