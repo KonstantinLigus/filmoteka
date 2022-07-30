@@ -1,4 +1,5 @@
 import { renderMovieCards } from './createLibrary';
+import { loaderShow, hideLoader } from './loader';
 
 const libBtnWatch = document.querySelector('[data-action="watched"]');
 const libBtnQueue = document.querySelector('[data-action="queue"]');
@@ -10,7 +11,9 @@ libBtnWatch.addEventListener('click', onClickLibBtnWatch);
 libBtnQueue.addEventListener('click', onClickLibBtnQueue);
 
 export function onLibraryLoad(event) {
+  loaderShow();
   const movies = JSON.parse(localStorage.getItem('watchedCard'));
+  hideLoader();
   renderMovieCards(movies);
 }
 
@@ -24,12 +27,14 @@ export function onClickLibBtnWatch(event) {
 }
 
 export function onClickLibBtnQueue(event) {
+  loaderShow();
   libBtnQueue.classList.add('disabled');
   libBtnWatch.classList.remove('disabled');
   libBtnQueue.disabled = event.target;
   libBtnWatch.disabled = !event.target;
   openQueue();
   const movies = JSON.parse(localStorage.getItem('queuedCard'));
+  hideLoader();
   renderMovieCards(movies);
 }
 

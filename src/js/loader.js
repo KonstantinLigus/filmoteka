@@ -7,5 +7,3 @@ export function loaderShow() {
 export function hideLoader() {
   loader.classList.remove('is-open');
 }
-
-export { loaderShow, hideLoader };

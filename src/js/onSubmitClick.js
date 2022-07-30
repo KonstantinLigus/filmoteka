@@ -3,6 +3,7 @@ import { noSuccess, paginationHome } from './references';
 import { renderMovieCard } from './createGallery';
 import { GetMovieApi } from './fetchMovies';
 import { renderNumerationOfHome } from './createNumeration';
+import { loaderShow, hideLoader } from './loader';
 
 const getMovieApi = new GetMovieApi();
 export let inputValue = '';
@@ -20,12 +21,13 @@ export function onSubmitClick(e) {
   } else {
     noSuccess.classList.remove('visible');
   }
-  // Search movies
+  // Search movies and Render
   searchMoviesAndRender(inputValue);
   clearInput();
 }
 
 async function searchMoviesAndRender(inputValue) {
+  loaderShow();
   try {
     getMovieApi.resetPage();
     const data = await getMovieApi.fetchSearchedMovie(inputValue);
@@ -33,6 +35,7 @@ async function searchMoviesAndRender(inputValue) {
       noSuccess.classList.add('visible');
     }
     // Render gallery
+    hideLoader();
     renderMovieCard(data.results);
     paginationHome.innerHTML = '';
     if (data.total_pages > 0) {
