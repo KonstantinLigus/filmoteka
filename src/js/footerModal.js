@@ -15,7 +15,7 @@ refs.backdropOfFooterModal.addEventListener(
   onBackdropOfFooterModalClick
 );
 
-function onStudentsLinkClick() {
+export function onStudentsLinkClick() {
   window.addEventListener('keydown', onEscKey);
   refs.backdropOfFooterModal.classList.toggle('is-hidden2');
 

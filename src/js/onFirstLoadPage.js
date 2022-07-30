@@ -1,12 +1,14 @@
 import { GetMovieApi } from './fetchMovies';
 import { renderMovieCard } from './createGallery';
 import { renderNumerationOfHome } from './createNumeration';
+// import { loaderShow, hideLoader } from './loader';
 
 const getMovieApi = new GetMovieApi();
 
 window.addEventListener('DOMContentLoaded', onFirstLoadPage);
 
 export async function onFirstLoadPage(event) {
+  // loaderShow();
   try {
     const data = await getMovieApi.fetchPopularMovie();
     renderMovieCard(data.results);

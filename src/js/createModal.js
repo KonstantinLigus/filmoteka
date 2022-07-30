@@ -42,7 +42,7 @@ function createMovieCard(movie) {
           <p class="movie-card__content--item"> ${genre} </p>
       </ul>
       <h2 class="movie-card__about">About</h2>
-      <p class="movie-card__about--content"> ${overview} </p>
+      <p class="movie-card__about--content"> ${overviewChecker(overview)} </p>
       <div class="button-wrapper">
       <button type="button" class="modal-button modal-button-watched">Add to watched</button>
       <button type="button" class="modal-button modal-button-queue">Add to queue</button>
@@ -51,6 +51,9 @@ function createMovieCard(movie) {
 }
 
 function genreByName(genres) {
+  if (genres.length === 0) {
+    return 'no info';
+  }
   return genres
     .map(({ name }) => {
       return name;
@@ -63,4 +66,11 @@ function posterChecker(poster_path) {
     return 'https://via.placeholder.com/440x660.jpg?text=Image+Not+Found';
   }
   return `https://image.tmdb.org/t/p/w500${poster_path}`;
+}
+
+function overviewChecker(overview) {
+  if (overview === '') {
+    return 'no info';
+  }
+  return overview;
 }
