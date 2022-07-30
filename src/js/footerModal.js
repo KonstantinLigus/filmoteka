@@ -2,90 +2,128 @@ import confetti from 'canvas-confetti';
 // At the component you want to use confetti
 
 const refs = {
-    openModal2: document.querySelector('[open-modal]'),
-    closeModal2: document.querySelector('[close-modal]'),
-    backdrop2: document.querySelector('[js-backdrop]'),
-    card: document.querySelector('.js-menu')
-}
+  studentsLink: document.querySelector('[open-modal]'),
+  closeFooterModalBtn: document.querySelector('[close-modal]'),
+  backdropOfFooterModal: document.querySelector('[js-backdrop]'),
+  card: document.querySelector('.js-menu'),
+};
 
-refs.openModal2.addEventListener('click', onOpenModal2)
-refs.closeModal2.addEventListener('click', onCloseModal2)
-refs.backdrop2.addEventListener('click',onBackdrop2)
+refs.studentsLink.addEventListener('click', onStudentsLinkClick);
+refs.closeFooterModalBtn.addEventListener('click', onCloseFooterModalBtnClick);
+refs.backdropOfFooterModal.addEventListener(
+  'click',
+  onBackdropOfFooterModalClick
+);
 
-function onOpenModal2() {
-    window.addEventListener('keydown', onEscKey)
-    refs.backdrop2.classList.toggle('is-hidden2')
+function onStudentsLinkClick() {
+  window.addEventListener('keydown', onEscKey);
+  refs.backdropOfFooterModal.classList.toggle('is-hidden2');
 
-
-    if (!refs.backdrop2.classList.contains('is-hidden2')) {
-    let end = Date.now() + (1 * 1000);
+  if (!refs.backdropOfFooterModal.classList.contains('is-hidden2')) {
+    let end = Date.now() + 1 * 1000;
     const colors = ['#ff6b01', '#ffffff'];
     (function frame() {
-        confetti({
-            shapes:['circle', 'circle', 'square'],
-    particleCount: 2,
-    angle: 30,
-    spread: 80,
-    origin: { x: 0 },
-    colors: colors
-    });
-    confetti({
-    particleCount: 2,
-    angle: 150,
-    spread: 70,
-    origin: { x: 1 },
-    colors: colors
-    });
+      confetti({
+        shapes: ['circle', 'circle', 'square'],
+        particleCount: 2,
+        angle: 30,
+        spread: 80,
+        origin: { x: 0 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 150,
+        spread: 70,
+        origin: { x: 1 },
+        colors: colors,
+      });
 
-    if (Date.now() < end) {
-    requestAnimationFrame(frame);
-    }
-}());
-    }
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }
 }
 
-
-
-function onCloseModal2() {
-    window.removeEventListener('keydown', onEscKey)
-    refs.backdrop2.classList.toggle('is-hidden2')
+function onCloseFooterModalBtnClick() {
+  window.removeEventListener('keydown', onEscKey);
+  refs.backdropOfFooterModal.classList.toggle('is-hidden2');
 }
-function onBackdrop2(event) {
-    console.log(event.currentTarget)
-    console.log(event.target)
-    if (event.currentTarget === event.target) {
-        onCloseModal2()
-        console.log("click")
-    }
+function onBackdropOfFooterModalClick(event) {
+  if (event.currentTarget === event.target) {
+    onCloseFooterModalBtnClick();
+    console.log('click');
+  }
 }
 
 function onEscKey(event) {
-    console.log(event)
-    if (event.code === 'Escape') {
-    onCloseModal2()
-    }
+  if (event.code === 'Escape') {
+    onCloseFooterModalBtnClick();
+  }
 }
 
 const people = [
-    { name: "Константин", rank: "Team lead", url:"https://github.com/KonstantinLigus", foto:"https://avatars.githubusercontent.com/u/92418488?v=4" },
-    { name: "Станислав", rank: "Scrum master", url:"https://github.com/asst199162", foto:"https://avatars.githubusercontent.com/u/42334307?v=4" },
-    { name: "Александр", rank: "Developer", url:"https://github.com/AlexDi2019", foto:"https://avatars.githubusercontent.com/u/58602005?v=4" },
-    { name: "Влaдлен", rank: "Developer", url:"https://github.com/Vlad-Yavizhyn", foto:"https://avatars.githubusercontent.com/u/91382235?v=4" },
-    { name: "Диана", rank: "Developer", url:"https://github.com/glopchak", foto:"https://avatars.githubusercontent.com/u/92595780?v=4" },
-    { name: "Станислав", rank: "Developer", url:"https://github.com/Stanislav-PSV", foto:"https://avatars.githubusercontent.com/u/92394363?v=4" },
-    { name: "Галина", rank: "Developer", url:"https://github.com/HalynaStep", foto:"https://avatars.githubusercontent.com/u/94197972?v=4" },
-    { name: "Евгения", rank: "Developer", url: "https://github.com/Yevheniia2", foto: "https://avatars.githubusercontent.com/u/93269755?v=4" },
-    { name: "Станислав", rank: "Developer", url: "https://github.com/mankovskiy", foto: "https://avatars.githubusercontent.com/u/35701366?v=4" },
+  {
+    name: 'Константин',
+    rank: 'Team lead',
+    url: 'https://github.com/KonstantinLigus',
+    foto: 'https://avatars.githubusercontent.com/u/92418488?v=4',
+  },
+  {
+    name: 'Станислав',
+    rank: 'Scrum master',
+    url: 'https://github.com/asst199162',
+    foto: 'https://avatars.githubusercontent.com/u/42334307?v=4',
+  },
+  {
+    name: 'Александр',
+    rank: 'Developer',
+    url: 'https://github.com/AlexDi2019',
+    foto: 'https://avatars.githubusercontent.com/u/58602005?v=4',
+  },
+  {
+    name: 'Влaдлен',
+    rank: 'Developer',
+    url: 'https://github.com/Vlad-Yavizhyn',
+    foto: 'https://avatars.githubusercontent.com/u/91382235?v=4',
+  },
+  {
+    name: 'Диана',
+    rank: 'Developer',
+    url: 'https://github.com/glopchak',
+    foto: 'https://avatars.githubusercontent.com/u/92595780?v=4',
+  },
+  {
+    name: 'Станислав',
+    rank: 'Developer',
+    url: 'https://github.com/Stanislav-PSV',
+    foto: 'https://avatars.githubusercontent.com/u/92394363?v=4',
+  },
+  {
+    name: 'Галина',
+    rank: 'Developer',
+    url: 'https://github.com/HalynaStep',
+    foto: 'https://avatars.githubusercontent.com/u/94197972?v=4',
+  },
+  {
+    name: 'Евгения',
+    rank: 'Developer',
+    url: 'https://github.com/Yevheniia2',
+    foto: 'https://avatars.githubusercontent.com/u/93269755?v=4',
+  },
+  {
+    name: 'Станислав',
+    rank: 'Developer',
+    url: 'https://github.com/mankovskiy',
+    foto: 'https://avatars.githubusercontent.com/u/35701366?v=4',
+  },
 ];
 
-
-
-
-
-
 function buildProfile() {
-    return people.map(({ name, rank, foto,url }) => {
-        return  `
+  return people
+    .map(({ name, rank, foto, url }) => {
+      return `
         <div class="profile">
         
         <img src="${foto}" width="140" height="140" alt="User avatar" class="avatar" />
@@ -98,8 +136,8 @@ function buildProfile() {
                 </svg>
             </a>
     </div>
-    `
-
-    }).join("")
+    `;
+    })
+    .join('');
 }
 refs.card.innerHTML = buildProfile(people);

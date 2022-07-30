@@ -20,9 +20,10 @@ let queuedMovie = [];
 refs.modalOpenClose.addEventListener('click', onModalOpen);
 
 export async function onModalOpen(e) {
-  // e.preventDefault();
-  const card = e.target.parentNode;
-  const id = card.getAttribute('id');
+  if (e.target === e.currentTarget) {
+    return;
+  }
+  const id = e.target.parentNode.getAttribute('id');
   // movie = JSON.parse(localStorage.getItem('searchedMovies')).find(
   //   movie => movie.id === Number(id)
   // );

@@ -5,4 +5,4 @@ import { onPageNumberClick } from './js/onPageNumberClick';
 // import * as loader from './js/loader';
 import { onModalOpen } from './js/modalOpenClose';
 import { getGenre } from './js/genresOfMovies';
-import * as footerModal from './js/footerModal';
+import { onStudentsLinkClick } from './js/footerModal';
